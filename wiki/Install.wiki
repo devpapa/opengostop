@@ -1,0 +1,9 @@
+#summary How to install source code
+
+= Install =
+build.xml이 위치한 dir로 이동후 
+$ ant rebuild.jar 
+
+= Run =
+build.xml이 위치한 곳에서 
+$ java -jar lib/gsgostop.jar
