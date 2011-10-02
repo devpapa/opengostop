@@ -1,5 +1,10 @@
 #summary How to install source code
 
+= Requirements =
+  * PC for compile and run
+  * Java compiler (recommandation : 1.6 +)
+  * ant 
+
 = Install =
 In the directory where build.xml is located 
   * $ ant rebuild.jar 
