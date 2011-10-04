@@ -3,12 +3,14 @@
 = Requirements =
   * PC for compile and run
   * Java compiler (recommandation : 1.6 +)
+   - ex> $ apt-get install sun-java6-jdk 
   * ant 
+   - ex> $ apt-get install ant
 
 = Install =
 In the directory where build.xml is located 
-  * $ ant rebuild.jar 
+  * $ ./install.sh 
 
 = Run =
 In the directory where build.xml is located
-  * $ java -jar lib/gsgostop.jar
+  * $ ./run.sh
