@@ -3,9 +3,9 @@
 = Requirements =
   * PC for compile and run
   * Java compiler (recommandation : 1.6 +)
-   - ex> $ apt-get install sun-java6-jdk 
+   * ex> $ apt-get install sun-java6-jdk 
   * ant 
-   - ex> $ apt-get install ant
+   * ex> $ apt-get install ant
 
 = Install =
 In the directory where build.xml is located 
