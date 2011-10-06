@@ -168,7 +168,10 @@ public class GameConfig
     private void initConfig(Document doc)
         throws XPathExpressionException
     {
-        Element settings = getElement('/' + ROOT_NODE + '/' + "user.settings", doc);
+        Element settings = getElement('/' + ROOT_NODE + '/' + "audio.settings", doc);
+        initAudioSettings(settings);
+
+        settings = getElement('/' + ROOT_NODE + '/' + "user.settings", doc);
         initUserSettings(settings);
         
         settings = getElement('/' + ROOT_NODE + '/' + "game.settings", doc);
@@ -179,9 +182,6 @@ public class GameConfig
 
         settings = getElement('/' + ROOT_NODE + '/' + "layout.settings", doc);
         initLayoutSettings(settings);
-
-        settings = getElement('/' + ROOT_NODE + '/' + "audio.settings", doc);
-        initAudioSettings(settings);
     }
     
     private void initUserSettings(Element userSettings)
