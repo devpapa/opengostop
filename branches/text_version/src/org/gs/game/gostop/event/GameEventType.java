@@ -1,0 +1,24 @@
+package org.gs.game.gostop.event;
+
+public enum GameEventType
+{
+    ITEM_CLICKED,
+    ZORDER_CHANGED,
+    
+    PICK_LEAD_COMPLETED,
+    ALERT_COMPLETED,
+    STACK_COMPLETED,
+    DEAL_COMPLETED,
+    FOUR_CARDS_DECIDED,
+    FLIP_STACK_COMPLETED,
+    SWING_DECIDED,
+    SELECTED_CARD_ON_TABLE,
+    PLAY_COMPLETED,
+    NINE_DECIDED,
+    GO_DECIDED,
+    MORE_GAME_DECIDED,
+    
+    GAME_USER_UPDATED,
+    
+    MENU_CLICKED
+}
