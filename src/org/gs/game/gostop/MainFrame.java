@@ -43,6 +43,13 @@ public class MainFrame extends JFrame implements IGamePanelListener
         initContentPane();
         
         setResizable(false);
+
+		assert false;
+		if (setupUser())
+			setupGame();
+		else
+			gameStopped();
+		assert false;
     }
     
     private void initContentPane()
@@ -74,7 +81,7 @@ public class MainFrame extends JFrame implements IGamePanelListener
         
         sud.pack();
         Main.moveToCenter(sud);
-        sud.setVisible(true);
+        sud.setVisible(false);
         
         gameUser = sud.getGameUser();
         
@@ -94,7 +101,7 @@ public class MainFrame extends JFrame implements IGamePanelListener
         
         sgd.pack();
         Main.moveToCenter(sgd);
-        sgd.setVisible(true);
+        sgd.setVisible(false);
         
         if (sgd.getSelectedGame() != null)
         {
@@ -154,7 +161,7 @@ public class MainFrame extends JFrame implements IGamePanelListener
         
             dlgUserInfo.pack();
             Main.moveToCenter(dlgUserInfo);
-            dlgUserInfo.setVisible(true);
+            dlgUserInfo.setVisible(false);
         }
         else
         {
@@ -183,7 +190,7 @@ public class MainFrame extends JFrame implements IGamePanelListener
         
             dlgPlayerRanking.pack();
             Main.moveToCenter(dlgPlayerRanking);
-            dlgPlayerRanking.setVisible(true);
+            dlgPlayerRanking.setVisible(false);
         }
         else
         {
