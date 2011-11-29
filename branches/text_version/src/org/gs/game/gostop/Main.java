@@ -42,7 +42,7 @@ public class Main
         {
         }
         
-        mainFrame.setVisible(true);
+        mainFrame.setVisible(false);
     }
     
     public static void moveToCenter(Component component)
