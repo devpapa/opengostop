@@ -77,13 +77,13 @@ public class GoStopServer {
 	
 	public static void main(String args[]) {
 		int port=5777;
-		ChattingServer c=new ChattingServer();
+		GoStopServer c=new GoStopServer();
 		
 		if (args.length>0) {
 			try {
 				port=Integer.parseInt(args[0]);
 			} catch (NumberFormatException e) {
-				System.out.println("Usage: java ChattingServer [portnumber:default=5777]");
+				System.out.println("Usage: java GoStopServer [portnumber:default=5777]");
 				System.exit(-1);
 			}
 		}
@@ -96,7 +96,7 @@ public class GoStopServer {
 class Client extends Thread {
 	
 	private Socket socket=null;
-	private ChattingServer server=null;
+	private GoStopServer server=null;
 	private BufferedReader br=null;
 	private BufferedWriter bw=null;
 	private String username="";
@@ -107,7 +107,7 @@ class Client extends Thread {
 								"  /bye, /exit, /quit \n0"+
 								"=======================================================\n";
 	
-	public Client(Socket s, ChattingServer c) {
+	public Client(Socket s, GoStopServer c) {
 		socket=s;
 		server=c;
 		
