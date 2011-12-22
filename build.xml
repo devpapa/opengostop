@@ -66,7 +66,8 @@
 
       <manifest>
         <attribute name="Built-By" value="GS"/>
-        <attribute name="Main-Class" value="org.gs.game.gostop.Main"/>
+        <!--attribute name="Main-Class" value="org.gs.game.gostop.Main"/-->
+        <attribute name="Main-Class" value="org.gs.game.gostop.server.multi_text.GoStopServer"/>
         <attribute name="Class-Path" value="${resource.jar} ${sound.jars}"/>
         <attribute name="Implementation-Title" value="GS GoStop"/>
         <attribute name="Implementation-Version" value="${version} ${TODAY}"/> 

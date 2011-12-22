@@ -44,12 +44,11 @@ public class MainFrame extends JFrame implements IGamePanelListener
         
         setResizable(false);
 
-		assert false;
 		if (setupUser())
 			setupGame();
-		else
+		else {
 			gameStopped();
-		assert false;
+		}
     }
     
     private void initContentPane()
@@ -82,9 +81,17 @@ public class MainFrame extends JFrame implements IGamePanelListener
         sud.pack();
         Main.moveToCenter(sud);
         sud.setVisible(false);
-        
         gameUser = sud.getGameUser();
-        
+		
+		assert(gameUser!=null);
+// wait three players access - 20111129-1447 ymkim
+// For each access, this routine has to add user info
+/*
+		if (gameUser == null) {
+		  gameUser = new GameUser("ymkim", "1234", "Kim Youngmin", "kym", "", "", "", GameUser.HUMAN,
+						10000, 0, 0, 0, 0);
+		}
+  */      
         if (gameUser != null && Resource.getLocale().equals(gameUser.getUserLocale()) == false)
         {
             Resource.setLocale(gameUser.getUserLocale());
