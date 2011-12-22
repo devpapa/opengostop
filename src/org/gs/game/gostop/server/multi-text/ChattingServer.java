@@ -1,11 +1,17 @@
 // ChttingServer.java
 // author: realmove
+
+// 20111222-1328 : ymkim starts to develop go stop server
+// Author : Youngmin Kim (ymkim92@gmail.com)
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
+/*
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+*/
 
 public class ChattingServer extends JPanel {
 	
@@ -67,7 +73,7 @@ public class ChattingServer extends JPanel {
 		String str="\n==========================================================\n";
 		for (int i=0; i<client.size(); i++)
 			str+=(client.elementAt(i)).getUserName()+"\n";
-		str+="============================================================\n";
+		str+="==========================================================\n";
 
 		return str;
 	}
@@ -139,10 +145,18 @@ class Client extends Thread {
 		while (true) {
 			try {
 				str=br.readLine();
+//				assert (str != null);
+				if (str == null) {
+			//		server.message(username+ " 111");
+					server.removeClient(this);
+					break;
+				}
+					
 				if (isCommonMessage(str)) {
 					server.message(username+":"+str);
 				}
 			} catch (IOException e) {
+			//	server.message(username+ " is out abnormally.");
 				server.removeClient(this);
 				break;
 			}
@@ -165,6 +179,14 @@ class Client extends Thread {
 				username=newname;
 			} else if (tmp.equalsIgnoreCase("/all")) {					// show all user
 				sendMessage(server.getAllUser());
+			} else if (tmp.equalsIgnoreCase("/bye")||
+					tmp.equalsIgnoreCase("/quit") || tmp.equalsIgnoreCase("/exit")) {	
+			//	server.message(username+ " 222");
+				this.closeSocket();
+
+			} else if (tmp.equalsIgnoreCase("/send ")) {	
+
+
 			} else {
 				is=true;
 			}
