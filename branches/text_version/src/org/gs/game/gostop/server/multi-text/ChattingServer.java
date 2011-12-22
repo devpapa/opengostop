@@ -14,7 +14,7 @@ public class ChattingServer extends JPanel {
 	
 	private ServerSocket srvSocket=null;
 	private Socket socket=null;
-	private Vector<T> client=new Vector();
+	private Vector<Client> client=new Vector<Client>();
 	
 	public ChattingServer() {
 		this.setLayout(new BorderLayout(5,5));
@@ -25,12 +25,13 @@ public class ChattingServer extends JPanel {
 	public void message(String str) {
 		tArea.append(str+"\n");
 		for (int i=0; i<client.size(); i++) {
-			((Client)client.elementAt(i)).sendMessage(str);
+			(client.elementAt(i)).sendMessage(str);
 		}
 	}
 	
 	public void addClient(Client c) {
-		client.addElement(c);		
+//		client.addElement(c);		
+		client.add(c);		
 	}
 	
 	public void removeClient(Client c) {
@@ -65,7 +66,7 @@ public class ChattingServer extends JPanel {
 	public String getAllUser() {
 		String str="\n==========================================================\n";
 		for (int i=0; i<client.size(); i++)
-			str+=((Client)client.elementAt(i)).getUserName()+"\n";
+			str+=(client.elementAt(i)).getUserName()+"\n";
 		str+="============================================================\n";
 
 		return str;
@@ -101,7 +102,7 @@ public class ChattingServer extends JPanel {
 	
 }
 
-public class Client<T> extends Thread {
+class Client extends Thread {
 	
 	private Socket socket=null;
 	private ChattingServer server=null;
