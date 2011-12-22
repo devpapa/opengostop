@@ -5,7 +5,7 @@
 // Author : Youngmin Kim (ymkim92@gmail.com)
 // Base code : http://www.javastudy.co.kr/docs/lec_java/sang/stream_socket.html
 
-//package org.gs.game.gostop.server.multi_text;
+package org.gs.game.gostop.server.multi_text;
 
 import java.io.*;
 import java.net.*;
