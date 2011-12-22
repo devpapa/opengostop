@@ -17,6 +17,8 @@ import java.security.*;
 public class sample_server {
 
 	private static int port=4444, maxConnections=0;
+
+    private Vector client=new Vector();
 	// Listen for incoming connections and handle them
 	public static void main(String[] args) {
 		int i=0;
@@ -31,6 +33,17 @@ public class sample_server {
 				server = listener.accept();
 				doComms conn_c= new doComms(server);
 				Thread t = new Thread(conn_c);
+
+				System.out.println("active clients" + do);
+/*
+    public void message(String str) {
+        tArea.append(str+"\n");
+        for (int i=0; i<client.size(); i++) {
+            ((Client)client.elementAt(i)).sendMessage(str);
+        }
+    }
+
+ */
 				t.start();
 			}
 		} catch (IOException ioe) {
