@@ -4,6 +4,8 @@
 // 20111222-1328 : ymkim starts to develop go stop server
 // Author : Youngmin Kim (ymkim92@gmail.com)
 
+package org.gs.game.gostop;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
