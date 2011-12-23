@@ -12,7 +12,7 @@ import org.gs.game.gostop.dlg.PlayerRankingDlg;
 import org.gs.game.gostop.dlg.SetupGameDlg;
 import org.gs.game.gostop.dlg.SetupUserDlg;
 import org.gs.game.gostop.event.IGamePanelListener;
-import org.gs.game.gostop.item.PlayerAvatarItem;
+//import org.gs.game.gostop.item.PlayerAvatarItem;
 
 public class MainFrame extends JFrame implements IGamePanelListener
 {
@@ -21,7 +21,7 @@ public class MainFrame extends JFrame implements IGamePanelListener
     
     private static MainFrame _instance = null;  // singleton instance
 
-    private GamePanel gamePanel;
+    private TextGamePanel gamePanel;
     private GameConfig gameConfig;
     private GameUser gameUser;
     private int gameMoneyPerPoint;
@@ -53,12 +53,13 @@ public class MainFrame extends JFrame implements IGamePanelListener
     
     private void initContentPane()
     {
+/*
         Container contentPane = getContentPane();
         
         gamePanel = new GamePanel(gameConfig);
         gamePanel.addGamePanelEventListener(this);
         gamePanel.requestFocusInWindow();
-        contentPane.add(gamePanel);
+        contentPane.add(gamePanel);*/
     }
 
     protected void processWindowEvent(WindowEvent e) 
@@ -129,6 +130,7 @@ public class MainFrame extends JFrame implements IGamePanelListener
     
     public void onMenuSelected(Object selectedObject, String menuCmd)
     {
+/*
         if (GamePanel.MENU_USER_INFO.equals(menuCmd))
         {
             if (selectedObject instanceof PlayerAvatarItem)
@@ -140,6 +142,7 @@ public class MainFrame extends JFrame implements IGamePanelListener
         }
         else if (GamePanel.MENU_PLAYER_RANKING.equals(menuCmd))
             onPlayerRanking();
+*/
     }
     
     public void onChildDlgDisposed(Component child, Object... params)

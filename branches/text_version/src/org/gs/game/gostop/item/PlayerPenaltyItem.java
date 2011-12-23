@@ -8,7 +8,7 @@ import java.awt.Shape;
 
 import javax.swing.JComponent;
 
-import org.gs.game.gostop.GamePanel;
+import org.gs.game.gostop.TextGamePanel;
 import org.gs.game.gostop.Resource;
 import org.gs.game.gostop.play.GamePenalty;
 
@@ -37,7 +37,7 @@ public class PlayerPenaltyItem extends GameItem
 
         public int getZOrder()
         {
-            return GamePanel.LABEL_ZORDER;
+            return TextGamePanel.LABEL_ZORDER;
         }
 
         public void paintItem(Graphics g)
@@ -74,7 +74,7 @@ public class PlayerPenaltyItem extends GameItem
 
     public int getZOrder()
     {
-        return GamePanel.LABEL_ZORDER;
+        return TextGamePanel.LABEL_ZORDER;
     }
 
     public void paintItem(Graphics g)

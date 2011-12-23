@@ -1,18 +1,18 @@
 package org.gs.game.gostop.play;
 
-import org.gs.game.gostop.GamePanel;
+import org.gs.game.gostop.TextGamePanel;
 import org.gs.game.gostop.GamePlayer;
 import org.gs.game.gostop.GameTable;
 import org.gs.game.gostop.TableCardPoint;
-import org.gs.game.gostop.action.GameAction;
-import org.gs.game.gostop.action.ShowDialogAction;
-import org.gs.game.gostop.action.ShowGoAction;
-import org.gs.game.gostop.action.post.QueryGoPostAction;
+//import org.gs.game.gostop.action.GameAction;
+//import org.gs.game.gostop.action.ShowDialogAction;
+//import org.gs.game.gostop.action.ShowGoAction;
+//import org.gs.game.gostop.action.post.QueryGoPostAction;
 import org.gs.game.gostop.dlg.GameQueryDlg;
 import org.gs.game.gostop.event.GameEventType;
 import org.gs.game.gostop.item.CardItem;
 
-public class LocalPlayHandler implements IPlayHandler
+public class LocalPlayHandler// implements IPlayHandler
 {
     private GamePlayer gamePlayer;
     private GameTable gameTable;
@@ -67,59 +67,65 @@ public class LocalPlayHandler implements IPlayHandler
         gameTable.setCanClickTopCard(false);
     }
 
+/*
     public GameAction getSelectTableCardAction(TableCardPoint flipTcp)
     {
         GameQueryDlg queryDlg = new GameQueryDlg(null,
                                                  GameQueryDlg.SELECT_CARD,
                                                  null,
                                                  flipTcp.getCardItems());
-        return new ShowDialogAction(queryDlg, GamePanel.TIME_UNITS_PER_SECOND*10,
+        return new ShowDialogAction(queryDlg, TextGamePanel.TIME_UNITS_PER_SECOND*10,
                                     false, false);
     }
+*/
     
     public void decideGo()
     {
-        GamePanel gamePanel = gamePlayer.getGamePanel();
+        TextGamePanel gamePanel = gamePlayer.getGamePanel();
+/*
         GameQueryDlg queryDlg = new GameQueryDlg(gamePanel, GameQueryDlg.QUERY_GO,
                                                  null,
                                                  gameTable.getCurrentWinMoney(gamePlayer));
         ShowDialogAction sda = new ShowDialogAction(queryDlg,
-                                                    GamePanel.TIME_UNITS_PER_SECOND*10,
+                                                    TextGamePanel.TIME_UNITS_PER_SECOND*10,
                                                     false, true);
         
         sda.setCompleteEventType(GameEventType.GO_DECIDED);
         sda.addGamePostAction(new QueryGoPostAction(gamePlayer));
         
         gamePanel.getActionManager().addItem(sda);
+*/
     }
 
     public void decideNine()
     {
-        GamePanel gamePanel = gamePlayer.getGamePanel();
+        TextGamePanel gamePanel = gamePlayer.getGamePanel();
+/*
         GameQueryDlg queryDlg = new GameQueryDlg(gamePanel,
                                                  GameQueryDlg.QUERY_NINE,
                                                  GameEventType.NINE_DECIDED,
                                                  false);
         ShowDialogAction sda = new ShowDialogAction(queryDlg,
-                                                    GamePanel.TIME_UNITS_PER_SECOND*10,
+                                                    TextGamePanel.TIME_UNITS_PER_SECOND*10,
                                                     false);
         
-        gamePanel.getActionManager().addItem(sda);
+        gamePanel.getActionManager().addItem(sda);*/
     }
 
     public void decideGoOnFourCards()
     {
-        GamePanel gamePanel = gamePlayer.getGamePanel();
+        TextGamePanel gamePanel = gamePlayer.getGamePanel();
+/*
         GameQueryDlg queryDlg = new GameQueryDlg(gamePanel,
                                                  GameQueryDlg.QUERY_FOUR_CARD,
                                                  GameEventType.FOUR_CARDS_DECIDED,
                                                  false);
         ShowDialogAction sda = new ShowDialogAction(queryDlg,
-                                                    GamePanel.TIME_UNITS_PER_SECOND*10,
+                                                    TextGamePanel.TIME_UNITS_PER_SECOND*10,
                                                     false, true);
         ShowGoAction sga = new ShowGoAction(gamePlayer, 20, null, true);
         
         sda.setNextAction(sga);
-        gamePanel.getActionManager().addItem(sda);
+        gamePanel.getActionManager().addItem(sda);*/
     }
 }

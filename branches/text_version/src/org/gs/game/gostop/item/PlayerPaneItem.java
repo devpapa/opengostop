@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JComponent;
 
-import org.gs.game.gostop.GamePanel;
+import org.gs.game.gostop.TextGamePanel;
 
 public class PlayerPaneItem extends GameItem
 {
@@ -31,7 +31,7 @@ public class PlayerPaneItem extends GameItem
     
     public int getZOrder()
     {
-        return GamePanel.BACKGROUND_ZORDER;
+        return TextGamePanel.BACKGROUND_ZORDER;
     }
     
     public void setActive(boolean active)
