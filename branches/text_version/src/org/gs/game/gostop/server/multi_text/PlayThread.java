@@ -1,11 +1,8 @@
-/// ChattingServer.java
-// author: realmove
-
-// 20111222-1328 : ymkim starts to develop a gostop server
+// 20111223-1631
 // Author : Youngmin Kim (ymkim92@gmail.com)
-// Base code : http://www.javastudy.co.kr/docs/lec_java/sang/stream_socket.html
 
 package org.gs.game.gostop.server.multi_text;
+
 
 import java.io.*;
 import java.net.*;
@@ -18,18 +15,21 @@ import javax.swing.*;
 import org.gs.game.gostop.TextGamePanel;
 
 /*
-	This GoStopServer can serve only 3 players at one time
+	This can serve only 3 players at one time
  */
 
 class PlayThread extends Thread {
 	
+	private Vector<Client> clients;
 	
-	public PlayThread() {
+	public PlayThread(Vector<Client> client) {
+		clients = client;
 	}
 	
 	public void run() {
 	}
 
+/*
 	public void sendMessage(String str) {
 		try {
 			bw.write(str);
@@ -53,4 +53,5 @@ class PlayThread extends Thread {
 			
 		}	
 	}
+*/
 }
