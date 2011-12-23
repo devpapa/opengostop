@@ -35,12 +35,12 @@ public class PlayerStatus
     
     private static enum NINE_STATUS { NOT_DECIDED, USE_AS_TEN, USE_AS_LEAF }
 
-    public PlayerStatus(GamePanel gamePanel, PlayerLayout playerLayout)
+    public PlayerStatus(TextGamePanel gamePanel, PlayerLayout playerLayout)
     {
         playerSide = playerLayout.getPlayerSide();
-        playerPoint = new PlayerPointItem(gamePanel, playerLayout.getPointRect());
-        playerPenalty = new PlayerPenaltyItem(gamePanel, playerLayout.getPenaltyRect());
-        playerBonus = new PlayerBonusItem(gamePanel, playerLayout.getBonusRect());
+//        playerPoint = new PlayerPointItem(gamePanel, playerLayout.getPointRect());
+//        playerPenalty = new PlayerPenaltyItem(gamePanel, playerLayout.getPenaltyRect());
+//        playerBonus = new PlayerBonusItem(gamePanel, playerLayout.getBonusRect());
         
         takenRects = new HashMap<CardClass,Rectangle>(4);
         for (CardClass cc: CardClass.values())
@@ -53,7 +53,7 @@ public class PlayerStatus
         Dimension cardDim = CardItem.getCardImageInfo(cardSize).getSize();
         Rectangle rl = playerLayout.getTakenRect(CardClass.LEAF);
         Rectangle rect = new Rectangle(rl.x, rl.y+cardDim.height-LC_SIZE, LC_SIZE, LC_SIZE);
-        leafCounter = new LeafCountItem(gamePanel, rect);
+        //leafCounter = new LeafCountItem(gamePanel, rect);
     }
     
     public void initPlayerStatus()
@@ -67,9 +67,9 @@ public class PlayerStatus
         prevLeafPoints = 0;
         nineDecided = NINE_STATUS.NOT_DECIDED;
         
-        playerPoint.setPoints(0);
-        playerPenalty.clearPenalties();
-        playerBonus.clearBonus();
+        //playerPoint.setPoints(0);
+        //playerPenalty.clearPenalties();
+       // playerBonus.clearBonus();
         leafCounter.setCount(0);
         missionBonus = 0;
     }
@@ -100,6 +100,7 @@ public class PlayerStatus
     {
         int count = 0;
         
+/*
         if (playerBonus.getGoCount() > 2)
             count += playerBonus.getGoCount() - 2;
         
@@ -107,7 +108,7 @@ public class PlayerStatus
         
         if (takenTens.size() > 6)       // mongDDa
             count += takenTens.size() - 6;
-        
+  */      
         return count;
     }
     
@@ -140,14 +141,15 @@ public class PlayerStatus
     {
         int newPoints = getCardPoints();
         
-        playerPoint.setPoints(newPoints);
+        //playerPoint.setPoints(newPoints);
         
         return newPoints;
     }
     
     public int getPlayerPoints()
     {
-        return playerPoint.getPoints();
+//        return playerPoint.getPoints();
+		return 0;
     }
     
     public int getCardPoints(CardClass cardClass)
@@ -189,17 +191,21 @@ public class PlayerStatus
     
     public int getGoCount()
     {
-        return playerBonus.getGoCount();
+//        return playerBonus.getGoCount();
+		return 0;
     }
+
     
     public void addGoCount()
     {
+/*
         playerBonus.addGoCount();
         prevPoints = refreshCardPoints();
         
         int curLeafPoints = getCardPoints(CardClass.LEAF);
         if (prevLeafPoints < curLeafPoints)
             prevLeafPoints = curLeafPoints;
+*/
     }
     
     public int getPrevLeafPoints()
@@ -209,7 +215,7 @@ public class PlayerStatus
     
     public void addTripleCount()
     {
-        playerBonus.addTripleCount();
+ //       playerBonus.addTripleCount();
     }
     
     public boolean isCardTaken(int cardCode, boolean majorCode)
@@ -235,12 +241,13 @@ public class PlayerStatus
     
     public void addSwampCount()
     {
-        playerBonus.addSwampCount();
+        //playerBonus.addSwampCount();
     }
     
     public int getSwampCount()
     {
-        return playerBonus.getSwampCount();
+//        return playerBonus.getSwampCount();
+		return 0;
     }
     
     public boolean needToDecideNine(int winPoints)
@@ -295,7 +302,7 @@ public class PlayerStatus
     
     public void setPenalty(GamePenalty gamePanalty, boolean penalty)
     {
-        playerPenalty.setPenalty(gamePanalty, penalty);
+        //playerPenalty.setPenalty(gamePanalty, penalty);
     }
     
     private boolean isCardTaken(List<CardItem> takenCards, int cardCode, boolean majorCode)
@@ -343,7 +350,7 @@ public class PlayerStatus
             for (int i = 0; i < count; i++)
             {
                 cardItem = takenCards.get(i);
-                cardItem.setZOrder(GamePanel.CARD_ZORDER-i);
+                cardItem.setZOrder(TextGamePanel.CARD_ZORDER-i);
                 cardItem.moveItem(new Point(rect.x+xoff*i, rect.y));
             }
         }
@@ -359,7 +366,7 @@ public class PlayerStatus
                 Rectangle rect = takenCards.get(count-1).getRect();
                 leafCounter.moveItem(new Point(rect.x+rect.width-LC_SIZE,
                                                leafCounter.getRect().y));
-                leafCounter.setZOrder(GamePanel.CARD_ZORDER-count);
+                leafCounter.setZOrder(TextGamePanel.CARD_ZORDER-count);
             }
         }
     }

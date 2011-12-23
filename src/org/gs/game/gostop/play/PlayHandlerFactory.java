@@ -7,6 +7,7 @@ public class PlayHandlerFactory
 {
     public static IPlayHandler getPlayHandler(GamePlayer gamePlayer, GameTable gameTable)
     {
+/*
         IPlayHandler playHandler;
         
         if (gamePlayer.isOpposite())
@@ -20,5 +21,7 @@ public class PlayHandlerFactory
             playHandler = new LocalPlayHandler(gamePlayer, gameTable);
         
         return playHandler;
+*/
+		return null;
     }
 }

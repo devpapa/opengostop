@@ -217,7 +217,7 @@ public class TableCardPoint
             
             for (int i = 0; i < count; i++)
             {
-                cardItems.get(i).setZOrder(GamePanel.CARD_ZORDER-i);
+                cardItems.get(i).setZOrder(TextGamePanel.CARD_ZORDER-i);
                 cardItems.get(i).moveItem(new Point(point.x+xoff*i, point.y));
             }
         }

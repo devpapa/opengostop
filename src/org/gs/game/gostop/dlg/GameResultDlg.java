@@ -285,8 +285,9 @@ public class GameResultDlg extends GameDialog
         content.add(comp);
     }
     
-    private GamePanel getGamePanel()
+    private TextGamePanel getGamePanel()
     {
-        return (GamePanel)getParent();
+        //return (GamePanel)getParent();
+		return null;
     }
 }

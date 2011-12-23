@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JComponent;
 
-import org.gs.game.gostop.GamePanel;
+import org.gs.game.gostop.TextGamePanel;
 
 public class LeafCountItem extends GameItem
 {
@@ -22,7 +22,7 @@ public class LeafCountItem extends GameItem
     {
         super(parent, rect);
         
-        zorder = GamePanel.CARD_ZORDER;
+        zorder = TextGamePanel.CARD_ZORDER;
         count = 0;
     }
 

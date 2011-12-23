@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 */
+import org.gs.game.gostop.TextGamePanel;
 
 /*
 	This GoStopServer can serve only 3 players at one time
@@ -72,7 +73,7 @@ public class GoStopServer {
 				t.start();
 				System.out.println("The number of clients is " + client.size());
 				if (client.size() == 3) {
-					start_game(); // new Thread
+					start_play(client); // new Thread
 					System.out.println("Start game...");
 				}
 			} catch(IOException e) {
@@ -82,7 +83,7 @@ public class GoStopServer {
 		
 	}
 	
-	public void start_game()
+	public void start_play(Vector<Client> client)
 	{
 
 	}

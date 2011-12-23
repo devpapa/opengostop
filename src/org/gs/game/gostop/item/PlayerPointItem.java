@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JComponent;
 
-import org.gs.game.gostop.GamePanel;
+import org.gs.game.gostop.TextGamePanel;
 import org.gs.game.gostop.Resource;
 
 public class PlayerPointItem extends GameItem
@@ -28,7 +28,7 @@ public class PlayerPointItem extends GameItem
 
     public int getZOrder()
     {
-        return GamePanel.LABEL_ZORDER;
+        return TextGamePanel.LABEL_ZORDER;
     }
 
     public void paintItem(Graphics g)

@@ -1,7 +1,7 @@
 package org.gs.game.gostop.play;
 
 import org.gs.game.gostop.TableCardPoint;
-import org.gs.game.gostop.action.GameAction;
+//import org.gs.game.gostop.action.GameAction;
 
 public interface IPlayHandler
 {
@@ -9,7 +9,7 @@ public interface IPlayHandler
     
     void onPostActive();
     
-    GameAction getSelectTableCardAction(TableCardPoint flipTcp);
+    //GameAction getSelectTableCardAction(TableCardPoint flipTcp);
     
     void decideGo();
     

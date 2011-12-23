@@ -255,12 +255,13 @@ public class GameTable
     
     public CardItem getTopDeckCard(boolean remove)
     {
-        return cardDeck.getTopDeckCard(remove);
+//        return cardDeck.getTopDeckCard(remove);
+		return null;
     }
     
     public void setCanClickTopCard(boolean canClick)
     {
-        cardDeck.setCanClickTopCard(canClick);
+        //cardDeck.setCanClickTopCard(canClick);
     }
     
     public boolean isCardTaken(int cardCode, boolean majorCode)

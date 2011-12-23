@@ -1,10 +1,10 @@
 package org.gs.game.gostop;
 
-import org.gs.game.gostop.item.CardItem;
+import org.gs.game.gostop.item.TextCardItem;
 
 public interface ICardDeck
 {
-    CardItem getTopDeckCard(boolean remove);
+    TextCardItem getTopDeckCard(boolean remove);
     
-    void setCanClickTopCard(boolean canClick);
+//    void setCanClickTopCard(boolean canClick);
 }

@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.*;
 
-import org.gs.game.gostop.action.*;
+//import org.gs.game.gostop.action.*;
 import org.gs.game.gostop.config.*;
 import org.gs.game.gostop.config.GameUser.GameUserType;
 import org.gs.game.gostop.event.*;
@@ -16,7 +16,7 @@ import org.gs.game.gostop.play.IPlayHandler;
 
 public class GamePlayer
 {
-    private GamePanel gamePanel;
+    private TextGamePanel gamePanel;
     private GameTable gameTable;
     private GameUser gameUser;
     private PlayerLayout playerLayout;
@@ -32,8 +32,9 @@ public class GamePlayer
     private int flipCount;  // the number of count which the player can flip the deck cards
                             // without laying down in case of bombing
     
-    protected GamePlayer(GameUser gameUser, GamePanel gamePanel, PlayerLayout playerLayout)
+    protected GamePlayer(GameUser gameUser, TextGamePanel gamePanel, PlayerLayout playerLayout)
     {
+/*
         this.gamePanel = gamePanel;
         gameTable = gamePanel.getGameTable();
         this.gameUser = gameUser;
@@ -48,7 +49,7 @@ public class GamePlayer
         
         playHandler = PlayHandlerFactory.getPlayHandler(this, gameTable);
         
-        initPlayer(false);
+        initPlayer(false);*/
     }
     
     public GameUser getGameUser()
@@ -108,7 +109,7 @@ public class GamePlayer
         
         Point point = getHoldCardPoint(holdCards.size());
         
-        cardItem.setZOrder(GamePanel.CARD_ZORDER);
+        cardItem.setZOrder(TextGamePanel.CARD_ZORDER);
         holdCards.add(cardItem);
 
         // for DEBUGGING
@@ -351,16 +352,17 @@ public class GamePlayer
             holdCards.get(i).moveItem(getHoldCardPoint(i));
     }
     
-    public GamePanel getGamePanel()
+    public TextGamePanel getGamePanel()
     {
         return gamePanel;
     }
     
+/*
     public GameAction getSelectTableCardAction(TableCardPoint flipTcp)
     {
         return playHandler.getSelectTableCardAction(flipTcp);
     }
-    
+  */  
     public List<String> getRuleIds()
     {
         return ruleIds;
@@ -378,6 +380,7 @@ public class GamePlayer
     
     private void createPlayerLabel()
     {
+/*
         GameLayout gameLayout = gamePanel.getGameLayout();
         TextFont aliasFont;
         TextFont infoFont;
@@ -395,6 +398,7 @@ public class GamePlayer
         
         playerLabel = new PlayerLabelItem(gamePanel, playerLayout.getTextRect(), gameUser,
                                           aliasFont, infoFont);
+*/
     }
     
     private Point getHoldCardPoint(int index)

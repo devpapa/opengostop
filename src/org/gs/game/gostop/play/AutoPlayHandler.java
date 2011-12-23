@@ -3,9 +3,9 @@ package org.gs.game.gostop.play;
 import java.util.List;
 
 import org.gs.game.gostop.*;
-import org.gs.game.gostop.action.AutoPlayAction;
-import org.gs.game.gostop.action.GameAction;
-import org.gs.game.gostop.action.ShowGoAction;
+//import org.gs.game.gostop.action.AutoPlayAction;
+//import org.gs.game.gostop.action.GameAction;
+//import org.gs.game.gostop.action.ShowGoAction;
 import org.gs.game.gostop.config.BonusCards;
 import org.gs.game.gostop.event.GameEvent;
 import org.gs.game.gostop.event.GameEventManager;
@@ -14,7 +14,7 @@ import org.gs.game.gostop.event.GameEventType;
 import org.gs.game.gostop.item.CardItem;
 import org.gs.game.gostop.play.GameRule.GoStopRule;
 
-public class AutoPlayHandler implements IPlayHandler
+public class AutoPlayHandler// implements IPlayHandler
 {
     private GamePlayer gamePlayer;
     private GameTable gameTable;
@@ -57,10 +57,12 @@ public class AutoPlayHandler implements IPlayHandler
         gamePlayer.arrangeHoldCards();
     }
     
+/*
     public GameAction getSelectTableCardAction(TableCardPoint flipTcp)
     {
-        return new AutoPlayAction(this, flipTcp);
+        //return new AutoPlayAction(this, flipTcp);
     }
+*/
     
     public int selectTableCard(TableCardPoint flipTcp)
     {
@@ -72,6 +74,7 @@ public class AutoPlayHandler implements IPlayHandler
     
     public void decideGo()
     {
+/*
         boolean canGo = checkSwampedCards() && checkOtherPoints();
         
         if (canGo)
@@ -87,6 +90,7 @@ public class AutoPlayHandler implements IPlayHandler
                                             new GameEventResult(false));
             GameEventManager.fireGameEvent(event, false);
         }
+*/
     }
     
     public void decideNine()
@@ -98,10 +102,11 @@ public class AutoPlayHandler implements IPlayHandler
 
     public void decideGoOnFourCards()
     {
+/*
         ShowGoAction sga = new ShowGoAction(gamePlayer, 20,
                                             GameEventType.FOUR_CARDS_DECIDED, true);
         
-        gamePlayer.getGamePanel().getActionManager().addItem(sga);
+        gamePlayer.getGamePanel().getActionManager().addItem(sga);*/
     }
     
     private CardItem pickTakeableCard()
