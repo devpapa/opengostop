@@ -21,7 +21,7 @@ public class MainFrame extends JFrame implements IGamePanelListener
     
     private static MainFrame _instance = null;  // singleton instance
 
-    private TextGamePanel gamePanel;
+//    private TextGamePanel gamePanel;
     private GameConfig gameConfig;
     private GameUser gameUser;
     private int gameMoneyPerPoint;
@@ -113,8 +113,8 @@ public class MainFrame extends JFrame implements IGamePanelListener
         
         if (sgd.getSelectedGame() != null)
         {
-            gamePanel.initGame(sgd.getSelectedGame(), sgd.getSelectedBonus(),
-                               sgd.getSelectedUsers());
+/*            gamePanel.initGame(sgd.getSelectedGame(), sgd.getSelectedBonus(),
+                               sgd.getSelectedUsers());*/
             gameMoneyPerPoint = sgd.getSelectedGame().getGameMoney();
             setTitle(Resource.format(FRAME_TITLE, gameMoneyPerPoint));
         }

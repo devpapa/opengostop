@@ -16,7 +16,7 @@ import org.gs.game.gostop.play.IPlayHandler;
 
 public class GamePlayer
 {
-    private TextGamePanel gamePanel;
+//    private TextGamePanel gamePanel;
     private GameTable gameTable;
     private GameUser gameUser;
     private PlayerLayout playerLayout;
@@ -32,7 +32,7 @@ public class GamePlayer
     private int flipCount;  // the number of count which the player can flip the deck cards
                             // without laying down in case of bombing
     
-    protected GamePlayer(GameUser gameUser, TextGamePanel gamePanel, PlayerLayout playerLayout)
+    protected GamePlayer(GameUser gameUser, /*TextGamePanel gamePanel,*/ PlayerLayout playerLayout)
     {
 /*
         this.gamePanel = gamePanel;
@@ -109,7 +109,7 @@ public class GamePlayer
         
         Point point = getHoldCardPoint(holdCards.size());
         
-        cardItem.setZOrder(TextGamePanel.CARD_ZORDER);
+//        cardItem.setZOrder(TextGamePanel.CARD_ZORDER);
         holdCards.add(cardItem);
 
         // for DEBUGGING
@@ -166,7 +166,10 @@ public class GamePlayer
     
     public AlertItem getAlertItem()
     {
+/*
         return gamePanel.getAlertItem();
+*/
+		return null;
     }
     
     public boolean checkFourCards()
@@ -352,12 +355,12 @@ public class GamePlayer
             holdCards.get(i).moveItem(getHoldCardPoint(i));
     }
     
+/*
     public TextGamePanel getGamePanel()
     {
         return gamePanel;
     }
     
-/*
     public GameAction getSelectTableCardAction(TableCardPoint flipTcp)
     {
         return playHandler.getSelectTableCardAction(flipTcp);
@@ -431,13 +434,14 @@ public class GamePlayer
     private Dimension getHoldCardSize()
     {
         Dimension size;
+/*
         
         if (isOpposite())
             size = gamePanel.getGameConfig().getCardSize(CardSize.SMALL);
         else
             size = gamePanel.getGameConfig().getCardSize(CardSize.HOLD);
-        
-        return size;
+*/        
+        return null;
     }
     
     private CardItem[] getSortedHoldCards()

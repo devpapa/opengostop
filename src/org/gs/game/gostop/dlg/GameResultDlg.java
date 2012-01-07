@@ -120,7 +120,7 @@ public class GameResultDlg extends GameDialog
         // show the game result
         int winnerMoney = 0;
         HashMap<GamePlayer,Integer> playerMoney = calcPlayerMoney(gamePoints);
-        GameTable gameTable = getGamePanel().getGameTable();
+//        GameTable gameTable = getGamePanel().getGameTable();
         
         for (Map.Entry<GamePlayer,Integer> entry: playerMoney.entrySet())
         {
@@ -130,10 +130,12 @@ public class GameResultDlg extends GameDialog
             
             // save game points
             GameUser gameUser = loser.getGameUser();
+/*
             gameUser.updateMoney(-lostMoney,
                                  -lostMoney/gameTable.getGameType().getGameMoney(),
                                  false,
                                  lostMoney == 0 ? WinType.DRAW : WinType.LOSE);
+*/
             gameUsers.add(gameUser);
             
             addLabel(content, gameUser.getUserAlias(), 1f, gbc, JLabel.CENTER);
@@ -158,9 +160,11 @@ public class GameResultDlg extends GameDialog
         addComponent(content, boxButtons, -1f, gbc);
 
         // save game points
+/*
         winner.getGameUser().updateMoney(winnerMoney,
                                          winnerMoney/gameTable.getGameType().getGameMoney(),
                                          false, WinType.WIN);
+*/
         gameUsers.add(winner.getGameUser());
         GameUser.updateGameUsers(gameUsers);
     }
@@ -168,7 +172,7 @@ public class GameResultDlg extends GameDialog
     private HashMap<GamePlayer,Integer> calcPlayerMoney(int gamePoints)
     {
         HashMap<GamePlayer,Integer> playerPoints = new HashMap<GamePlayer,Integer>(2);
-        GameTable gameTable = getGamePanel().getGameTable();
+/*        GameTable gameTable = getGamePanel().getGameTable();
         List<GamePlayer> goPlayers = gameTable.getGoPlayers();
         int goPenalty = 0;
         
@@ -213,6 +217,8 @@ public class GameResultDlg extends GameDialog
         }
         
         return playerPoints;
+*/
+		return null;
     }
     
     private String getPenaltyString(List<GamePenalty> penalties)
@@ -285,9 +291,10 @@ public class GameResultDlg extends GameDialog
         content.add(comp);
     }
     
-    private TextGamePanel getGamePanel()
+/*    private TextGamePanel getGamePanel()
     {
         //return (GamePanel)getParent();
 		return null;
     }
+*/
 }

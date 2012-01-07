@@ -1,6 +1,6 @@
 package org.gs.game.gostop.play;
 
-import org.gs.game.gostop.TextGamePanel;
+//import org.gs.game.gostop.TextGamePanel;
 import org.gs.game.gostop.GamePlayer;
 import org.gs.game.gostop.GameTable;
 import org.gs.game.gostop.TableCardPoint;
@@ -81,7 +81,7 @@ public class LocalPlayHandler// implements IPlayHandler
     
     public void decideGo()
     {
-        TextGamePanel gamePanel = gamePlayer.getGamePanel();
+//        TextGamePanel gamePanel = gamePlayer.getGamePanel();
 /*
         GameQueryDlg queryDlg = new GameQueryDlg(gamePanel, GameQueryDlg.QUERY_GO,
                                                  null,
@@ -99,7 +99,7 @@ public class LocalPlayHandler// implements IPlayHandler
 
     public void decideNine()
     {
-        TextGamePanel gamePanel = gamePlayer.getGamePanel();
+//        TextGamePanel gamePanel = gamePlayer.getGamePanel();
 /*
         GameQueryDlg queryDlg = new GameQueryDlg(gamePanel,
                                                  GameQueryDlg.QUERY_NINE,
@@ -114,7 +114,7 @@ public class LocalPlayHandler// implements IPlayHandler
 
     public void decideGoOnFourCards()
     {
-        TextGamePanel gamePanel = gamePlayer.getGamePanel();
+//        TextGamePanel gamePanel = gamePlayer.getGamePanel();
 /*
         GameQueryDlg queryDlg = new GameQueryDlg(gamePanel,
                                                  GameQueryDlg.QUERY_FOUR_CARD,

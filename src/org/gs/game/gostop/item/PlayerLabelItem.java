@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JComponent;
 
-import org.gs.game.gostop.TextGamePanel;
+//import org.gs.game.gostop.TextGamePanel;
 import org.gs.game.gostop.Resource;
 import org.gs.game.gostop.config.GameUser;
 import org.gs.game.gostop.config.TextFont;
@@ -102,7 +102,8 @@ public class PlayerLabelItem extends GameItem implements IGameEventListener
     
     public int getZOrder()
     {
-        return TextGamePanel.LABEL_ZORDER;
+//        return TextGamePanel.LABEL_ZORDER;
+		return 0;
     }
     
     public void setLeadPlayer(boolean leadPlayer)

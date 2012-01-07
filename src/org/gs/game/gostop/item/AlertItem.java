@@ -13,7 +13,7 @@ import javax.swing.JComponent;
 
 import org.gs.game.gostop.CardImageInfo;
 import org.gs.game.gostop.CardSize;
-import org.gs.game.gostop.TextGamePanel;
+//import org.gs.game.gostop.TextGamePanel;
 import org.gs.game.gostop.Resource;
 import org.gs.game.gostop.config.TextFont;
 
@@ -54,7 +54,8 @@ public class AlertItem extends GameItem
 
     public int getZOrder()
     {
-        return TextGamePanel.ANIMATION_ZORDER;
+//        return TextGamePanel.ANIMATION_ZORDER;
+		return 0;
     }
 
     public synchronized void paintItem(Graphics g)
