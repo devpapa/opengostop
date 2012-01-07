@@ -35,7 +35,7 @@ public class PlayerStatus
     
     private static enum NINE_STATUS { NOT_DECIDED, USE_AS_TEN, USE_AS_LEAF }
 
-    public PlayerStatus(TextGamePanel gamePanel, PlayerLayout playerLayout)
+    public PlayerStatus(/*TextGamePanel gamePanel,*/ PlayerLayout playerLayout)
     {
         playerSide = playerLayout.getPlayerSide();
 //        playerPoint = new PlayerPointItem(gamePanel, playerLayout.getPointRect());
@@ -350,7 +350,7 @@ public class PlayerStatus
             for (int i = 0; i < count; i++)
             {
                 cardItem = takenCards.get(i);
-                cardItem.setZOrder(TextGamePanel.CARD_ZORDER-i);
+//                cardItem.setZOrder(TextGamePanel.CARD_ZORDER-i);
                 cardItem.moveItem(new Point(rect.x+xoff*i, rect.y));
             }
         }
@@ -366,7 +366,7 @@ public class PlayerStatus
                 Rectangle rect = takenCards.get(count-1).getRect();
                 leafCounter.moveItem(new Point(rect.x+rect.width-LC_SIZE,
                                                leafCounter.getRect().y));
-                leafCounter.setZOrder(TextGamePanel.CARD_ZORDER-count);
+//                leafCounter.setZOrder(TextGamePanel.CARD_ZORDER-count);
             }
         }
     }

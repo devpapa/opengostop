@@ -15,7 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 */
-import org.gs.game.gostop.TextGamePanel;
+//import org.gs.game.gostop.TextGamePanel;
 import org.gs.game.gostop.server.multi_text.Client;
 
 /*
@@ -26,7 +26,7 @@ public class GoStopServer {
 	private ServerSocket srvSocket=null;
 	private Socket socket=null;
 	private Vector<Client> client=new Vector<Client>();
-    private TextGamePanel gamePanel;
+//    private TextGamePanel gamePanel;
 	
 	public GoStopServer() {
 	}
@@ -63,6 +63,7 @@ public class GoStopServer {
 			try {
 				socket=srvSocket.accept();
 				Client t=new Client(socket, this);
+assert(false);
 				if (client.size() >=3) {
 					// send waiting message to a new player
 					t.sendMessage("Game is ongoing.. so you can't play at this server\n");

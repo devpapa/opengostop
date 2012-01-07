@@ -57,7 +57,7 @@ public class MissionItem extends GameItem
         {
             super(parent, rect,
                   CardItem.getMajorCode(cardCode), CardItem.getMinorCode(cardCode),
-                  true, TextGamePanel.CARD_ZORDER);
+                  true, 0/*TextGamePanel.CARD_ZORDER*/);
             
             takenSide = null;
         }
@@ -105,7 +105,8 @@ public class MissionItem extends GameItem
         
         public int getZOrder()
         {
-            return TextGamePanel.LABEL_ZORDER;
+//            return TextGamePanel.LABEL_ZORDER;
+			return 0;
         }
 
         public void paintItem(Graphics g)
@@ -168,7 +169,8 @@ public class MissionItem extends GameItem
 
     public int getZOrder()
     {
-        return TextGamePanel.LABEL_ZORDER;
+//        return TextGamePanel.LABEL_ZORDER;
+		return 0;
     }
     
     public void setMessage(String mainMsgId, String subMsgId)
