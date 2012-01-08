@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -33,9 +34,11 @@ public class GamePanel extends JPanel implements IGameEventListener, ActionListe
     
     private static final String PICK_LEAD_LBL = "mission.pick.lead";
     private static final String PICK_LEAD2_LBL = "mission.pick.lead2";
+    private static final String GAME_MUTE_SOUND_LBL = "game.muteSound";
     
     public static final String MENU_USER_INFO = "MENU_USER_INFO";
     public static final String MENU_PLAYER_RANKING = "MENU_PLAYER_RANKING";
+    public static final String MENU_MUTE_SOUND = "MENU_MUTE_SOUND";
     
     private GameConfig gameConfig;
     private Image bgImage;
@@ -575,7 +578,7 @@ public class GamePanel extends JPanel implements IGameEventListener, ActionListe
         actionManager.addItems(actions);
     }
     
-    private GameItem getItemForPoint(Point point)
+    public GameItem getItemForPoint(Point point)
     {
         GameItem item = null;
         
@@ -688,12 +691,26 @@ public class GamePanel extends JPanel implements IGameEventListener, ActionListe
         menuItem.addActionListener(this);
         popup.add(menuItem);
         
+        JCheckBoxMenuItem cbm = new JCheckBoxMenuItem(Resource.getProperty(GAME_MUTE_SOUND_LBL));
+        cbm.setActionCommand(MENU_MUTE_SOUND);
+        cbm.addActionListener(this);
+        cbm.setState(MainFrame.getGameUser().getMuteSound());
+        popup.add(cbm);
+        
         popup.show(this, e.getX(), e.getY());
     }
     
     public void actionPerformed(ActionEvent e)
     {
-        if (e.getSource() instanceof JMenuItem)
+        if (e.getSource() instanceof JCheckBoxMenuItem)
+        {
+            JCheckBoxMenuItem cbm = (JCheckBoxMenuItem)e.getSource();
+            String actionCmd = cbm.getActionCommand();
+            GameEvent ge = new GameEvent(cbm.getState(), GameEventType.MENU_CLICKED,
+                                         actionCmd);
+            fireGamePanelEvent(ge);
+        }
+        else if (e.getSource() instanceof JMenuItem)
         {
             String actionCmd = ((JMenuItem)e.getSource()).getActionCommand();
             GameEvent ge = new GameEvent(popupItem, GameEventType.MENU_CLICKED,

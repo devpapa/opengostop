@@ -269,6 +269,11 @@ public class CardItem extends GameItem
         return index;
     }
     
+    public void setMouseOver(boolean mouseOver)
+    {
+        this.mouseOver = mouseOver;
+    }
+    
     private static int getCardIndex(int majorCode, int minorCode)
     {
         return (majorCode-1) * 4 + minorCode - 'a';

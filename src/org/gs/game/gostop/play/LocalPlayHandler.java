@@ -1,5 +1,10 @@
 package org.gs.game.gostop.play;
 
+import java.awt.MouseInfo;
+import java.awt.Point;
+
+import javax.swing.SwingUtilities;
+
 import org.gs.game.gostop.GamePanel;
 import org.gs.game.gostop.GamePlayer;
 import org.gs.game.gostop.GameTable;
@@ -11,6 +16,7 @@ import org.gs.game.gostop.action.post.QueryGoPostAction;
 import org.gs.game.gostop.dlg.GameQueryDlg;
 import org.gs.game.gostop.event.GameEventType;
 import org.gs.game.gostop.item.CardItem;
+import org.gs.game.gostop.item.GameItem;
 
 public class LocalPlayHandler implements IPlayHandler
 {
@@ -26,11 +32,19 @@ public class LocalPlayHandler implements IPlayHandler
     public void pickCard()
     {
         TableCardPoint tcp;
+        GamePanel gamePanel = gamePlayer.getGamePanel();
+        Point mousePt = MouseInfo.getPointerInfo().getLocation();
+        
+        SwingUtilities.convertPointFromScreen(mousePt, gamePanel);
+        
+        GameItem mouseOverItem = gamePanel.getItemForPoint(mousePt);
         
         for (CardItem cardItem: gamePlayer.getHoldCards())
         {
             // enable holding cards to be clicked
             cardItem.setCanClick(true);
+            if (mouseOverItem == cardItem)
+                cardItem.setMouseOver(true);
             
             // show card active status: first/safe, bomb
             tcp = gameTable.getTableCardPoint(cardItem.getMajorCode(), false);

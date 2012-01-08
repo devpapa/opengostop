@@ -15,8 +15,7 @@ public class Main
     public static void main(String[] args)
         throws Exception
     {
-//        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         
         MainFrame mainFrame = new MainFrame();
         

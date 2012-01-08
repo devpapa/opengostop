@@ -125,7 +125,7 @@ public class AutoPlayHandler implements IPlayHandler
                 else
                 {
                     int priority = getCardPriority(ci, true);
-                        
+
                     if (topPriority < priority)
                     {
                         topPriority = priority;
@@ -199,7 +199,7 @@ public class AutoPlayHandler implements IPlayHandler
                     
                     if (rule != null && gameTable.isRuleAvailable(rule))
                     {
-                        int curPriority = rule.getRulePoint() * 100 + 50;
+                        int curPriority = rule.getRulePoint() * 100 + 40;
                         
                         if (getTakenCount(rule) > 1)
                             curPriority += rule.getRulePoint() * 100;
@@ -210,8 +210,8 @@ public class AutoPlayHandler implements IPlayHandler
                 }
             }
             else if (gameTable.isCardTaken(cardItem.getMajorCode(), true)
-                     && gamePlayer.getHoldCardCount(cardItem.getMajorCode()) > 0)
-                priority = 200;
+                     && gamePlayer.getHoldCardCount(cardItem.getMajorCode()) > 1)
+                priority = 10;
             
             boolean missionAvail = gameTable.isMissionAvailable();
             int[] untakenCards;
@@ -230,13 +230,13 @@ public class AutoPlayHandler implements IPlayHandler
                 if (cardClass == CardClass.KING)
                 {
                     if (priority < 300)
-                        priority = untaken == cardItem.getCardCode() ? 350 : 300;
+                        priority = gamePlayer.isHoldingCard(untaken) ? 340 : 300;
                 }
                 else if ((cardClass == CardClass.LEAF && GameRule.getLeafPoints(untaken) > 1)
                          || cardClass == CardClass.TEN_LEAF)
                 {
                     if (priority < 400)
-                        priority = untaken == cardItem.getCardCode() ? 450 : 400;
+                        priority = gamePlayer.isHoldingCard(untaken) ? 440 : 400;
                 }
                 else
                 {
@@ -251,7 +251,7 @@ public class AutoPlayHandler implements IPlayHandler
                             curPriority += rule.getRulePoint() * 100;
                         
                         if (untaken == cardItem.getCardCode())
-                            curPriority += 50;
+                            curPriority += 40;
                         
                         if (priority < curPriority)
                             priority = curPriority;
@@ -259,7 +259,7 @@ public class AutoPlayHandler implements IPlayHandler
                 }
                 
                 if (missionAvail && gameTable.isMissionCard(untaken) && priority < 1000)
-                    priority = 1000;
+                    priority = untaken == cardItem.getCardCode() ? 1020 : 1000;
             }
         }
         
@@ -273,7 +273,7 @@ public class AutoPlayHandler implements IPlayHandler
             else if (tcp == null && priority > 0)
                 priority = -priority;
         }
-        
+
         return priority;
     }
     
@@ -281,13 +281,20 @@ public class AutoPlayHandler implements IPlayHandler
                                      boolean checkTable, GamePlayer goPlayer)
     {
         int goPriority = 0;
-        PlayerStatus pStatus = gameTable.getOtherPlayerStatus(gamePlayer, goPlayer).get(0);
+        PlayerStatus otherStatus = gameTable.getOtherPlayerStatus(gamePlayer, goPlayer).get(0);
+        PlayerStatus goStatus = gameTable.getPlayerStatus(goPlayer);
         
-        if (gameTable.isKingAvailable(cardItem.getMajorCode())
-            && pStatus.getTakenCards(CardClass.KING).size() > 0)
-            goPriority = tcp == null ? 2200 : -2200;
+        if (gameTable.isKingAvailable(cardItem.getMajorCode()) && tcp == null)
+        {
+            if (goStatus.getTakenCards(CardClass.KING).size() > 1)
+                goPriority = -2200;
+            else if (otherStatus.getTakenCards(CardClass.KING).size() > 1)
+                goPriority = 2200;
+            else if (otherStatus.getTakenCards(CardClass.KING).size() > 0)
+                goPriority = 2100;
+        }
         
-        int cardStatus = checkCardStatus(cardItem, pStatus);
+        int cardStatus = checkCardStatus(cardItem, otherStatus);
         int majorCode = cardItem.getMajorCode();
         boolean takenHalf = gameTable.isCardTaken(majorCode, true);
         int holdCount = gamePlayer.getHoldCardCount(majorCode);
@@ -304,8 +311,7 @@ public class AutoPlayHandler implements IPlayHandler
         }
         else
         {
-            pStatus = gameTable.getPlayerStatus(goPlayer);
-            cardStatus = checkCardStatus(cardItem, pStatus);
+            cardStatus = checkCardStatus(cardItem, goStatus);
             
             if (cardStatus == 2)
             {
@@ -317,10 +323,16 @@ public class AutoPlayHandler implements IPlayHandler
                 goPriority = tcp == null ? (takenHalf && holdCount > 1 ? 0 : -2300) :
                     takenHalf ? 300 : 500;
             }
+            else if (tcp != null && tcp.getCardCount(true) > 2)
+                goPriority = 600;
         }
         
+        if (tcp != null && tcp.getCardCount(true) >= 3)
+            goPriority = goStatus.getCardPoints(CardClass.LEAF) > 0 ? 2300 : 2150;
+        
         if (goPriority == 0 && tcp == null
-            && GameRule.getLeafCount(pStatus.getTakenCards(CardClass.LEAF)) >= 8
+            && otherStatus.getCardPoints(CardClass.LEAF) >= 8
+            && goStatus.getCardPoints(CardClass.LEAF) < 8
             && gameTable.isDoubleLeafAvailable(cardItem.getMajorCode()))
             goPriority = 2100;
         
