@@ -564,10 +564,11 @@ public class GameManager implements ICardDeck
         {
             for (int i = 0; i < cardCount; i++)
             {
-                int temp = cardDeck.get(i);
+                int first = Main.getRandom().nextInt(cardCount);
                 int second = Main.getRandom().nextInt(cardCount);
+                int temp = cardDeck.get(first);
                 
-                cardDeck.set(i, cardDeck.get(second));
+                cardDeck.set(first, cardDeck.get(second));
                 cardDeck.set(second, temp);
             }
             

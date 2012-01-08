@@ -9,6 +9,7 @@ import java.util.List;
 public class GameSoundManager extends Thread
 {
     private static GameSoundManager _instance = null;
+    private static boolean _bMute = false;
     
     private static final String SOUND_PREFIX = "sound.";
     private static final String ALERT_PREFIX = "alert.";
@@ -46,7 +47,7 @@ public class GameSoundManager extends Thread
     
     public static void playSound(String alertId, String voiceTypeId, boolean mix, int delay)
     {
-        if (alertId != null && alertId.length() > 0)
+        if (_bMute == false && alertId != null && alertId.length() > 0)
             getInstance().playSoundItem(alertId, voiceTypeId, mix, delay);
     }
     
@@ -67,6 +68,14 @@ public class GameSoundManager extends Thread
     public static GameVoiceType getVoiceType(String voiceTypeId)
     {
         return getInstance().voiceTypes.get(voiceTypeId);
+    }
+    
+    public static void setMute(boolean bMute)
+    {
+        _bMute = bMute;
+        
+        if (bMute)
+            stopAllSound();
     }
     
     private static synchronized GameSoundManager getInstance()

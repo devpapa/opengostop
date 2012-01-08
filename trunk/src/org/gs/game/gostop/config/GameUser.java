@@ -51,6 +51,9 @@ public class GameUser
     private static final String AVATAR_PATH_PROP = "avatar.path";
     private static final String USER_LOCALE_PROP = "user.locale";
     private static final String USER_VOICEID_PROP = "user.voiceId";
+    private static final String GAME_MONEY_TYPE_PROP = "game.moneyType";
+    private static final String GAME_BONUS_CARDS_PROP = "game.bonusCards";
+    private static final String GAME_MUTE_SOUND_PROP = "game.muteSound";
     private static final String MONEY_PROP = "money";
     private static final String ALL_IN_COUNT_PROP = "all.in.count";
     private static final String WINS_PROP = "wins";
@@ -81,6 +84,9 @@ public class GameUser
     private String avatarPath;
     private String userLocale;
     private String userVoiceId;
+    private int gameMoneyType;
+    private BonusCards gameBonusCards;
+    private boolean muteSound;
     private GameUserType userType;
     private long money;
     private int allInCount;
@@ -101,13 +107,14 @@ public class GameUser
             long money, int allInCount, int wins, int draws, int loses)
     {
         this(loginId, password, userName, userAlias, avatarPath, userLocale,
-             userVoiceId, userType, money, allInCount, wins, draws, loses,
-             money, money, 0, 0, 0, 0);
+             userVoiceId, 0, null, false, userType, money, allInCount,
+             wins, draws, loses, money, money, 0, 0, 0, 0);
     }
     
     public GameUser(String loginId, String password, String userName, String userAlias,
                     String avatarPath, String userLocale,
-                    String userVoiceId, GameUserType userType,
+                    String userVoiceId, int gameMoneyType, BonusCards gameBonusCards, 
+                    boolean muteSound, GameUserType userType,
                     long money, int allInCount, int wins, int draws, int loses,
                     long highestMoney, long lowestMoney,
                     int bestPoints, long bestMoney, int worstPoints, long worstMoney)
@@ -125,6 +132,9 @@ public class GameUser
             this.userVoiceId = null;
         else
             this.userVoiceId = userVoiceId;
+        this.gameMoneyType = gameMoneyType;
+        this.gameBonusCards = gameBonusCards;
+        this.muteSound = muteSound;
         this.userType = userType;
         this.money = money;
         this.allInCount = allInCount;
@@ -197,6 +207,36 @@ public class GameUser
         }
         
         return userVoiceId;
+    }
+    
+    public int getGameMoneyType()
+    {
+        return gameMoneyType;
+    }
+    
+    public void setGameMoneyType(int gameMoneyType)
+    {
+        this.gameMoneyType = gameMoneyType;
+    }
+    
+    public BonusCards getGameBonusCards()
+    {
+        return gameBonusCards;
+    }
+    
+    public void setGameBonusCards(BonusCards gameBonusCards)
+    {
+        this.gameBonusCards = gameBonusCards;
+    }
+    
+    public boolean getMuteSound()
+    {
+        return muteSound;
+    }
+    
+    public void setMuteSound(boolean muteSound)
+    {
+        this.muteSound = muteSound;
     }
     
     public GameUserType getUserType()
@@ -309,8 +349,8 @@ public class GameUser
     protected GameUser clone()
     {
         return new GameUser(loginId, null, userName, userAlias, avatarPath, userLocale,
-                            getUserVoiceId(), userType,
-                            money, allInCount, wins, draws, loses,
+                            getUserVoiceId(), gameMoneyType, gameBonusCards, muteSound,
+                            userType, money, allInCount, wins, draws, loses,
                             highestMoney, lowestMoney,
                             bestPoints, bestMoney, worstPoints, worstMoney);
     }
@@ -650,6 +690,9 @@ public class GameUser
                                 props.getProperty(AVATAR_PATH_PROP),
                                 props.getProperty(USER_LOCALE_PROP),
                                 props.getProperty(USER_VOICEID_PROP),
+                                getIntProp(props, GAME_MONEY_TYPE_PROP, 0),
+                                BonusCards.valueOf(props.getProperty(GAME_BONUS_CARDS_PROP)),
+                                Boolean.valueOf(props.getProperty(GAME_MUTE_SOUND_PROP)),
                                 GameConfig.valueOf(GameUserType.class, userNode.getAttribute(USER_TYPE_ATTR)),
                                 Long.parseLong(props.getProperty(MONEY_PROP)),
                                 Integer.parseInt(props.getProperty(ALL_IN_COUNT_PROP)),
@@ -704,6 +747,9 @@ public class GameUser
         props.setProperty(AVATAR_PATH_PROP, user.getAvatarPath());
         props.setProperty(USER_LOCALE_PROP, user.getUserLocale());
         props.setProperty(USER_VOICEID_PROP, user.getUserVoiceId());
+        props.setProperty(GAME_MONEY_TYPE_PROP, Integer.toString(user.getGameMoneyType()));
+        props.setProperty(GAME_BONUS_CARDS_PROP, BonusCards.getPropString(user.getGameBonusCards()));
+        props.setProperty(GAME_MUTE_SOUND_PROP, Boolean.toString(user.getMuteSound()));
         props.setProperty(MONEY_PROP, Long.toString(user.getMoney()));
         props.setProperty(ALL_IN_COUNT_PROP, Integer.toString(user.getAllInCount()));
         props.setProperty(WINS_PROP, Integer.toString(user.getWins()));

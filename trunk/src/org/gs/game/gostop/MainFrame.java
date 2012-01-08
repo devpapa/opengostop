@@ -13,6 +13,7 @@ import org.gs.game.gostop.dlg.SetupGameDlg;
 import org.gs.game.gostop.dlg.SetupUserDlg;
 import org.gs.game.gostop.event.IGamePanelListener;
 import org.gs.game.gostop.item.PlayerAvatarItem;
+import org.gs.game.gostop.sound.GameSoundManager;
 
 public class MainFrame extends JFrame implements IGamePanelListener
 {
@@ -78,11 +79,16 @@ public class MainFrame extends JFrame implements IGamePanelListener
         
         gameUser = sud.getGameUser();
         
-        if (gameUser != null && Resource.getLocale().equals(gameUser.getUserLocale()) == false)
+        if (gameUser != null)
         {
-            Resource.setLocale(gameUser.getUserLocale());
-            setTitle(Resource.format(FRAME_TITLE, gameMoneyPerPoint));
-            invalidate();
+            if (Resource.getLocale().equals(gameUser.getUserLocale()) == false)
+            {
+                Resource.setLocale(gameUser.getUserLocale());
+                setTitle(Resource.format(FRAME_TITLE, gameMoneyPerPoint));
+                invalidate();
+            }
+            
+            GameSoundManager.setMute(gameUser.getMuteSound());
         }
         
         return gameUser != null;
@@ -126,6 +132,13 @@ public class MainFrame extends JFrame implements IGamePanelListener
         }
         else if (GamePanel.MENU_PLAYER_RANKING.equals(menuCmd))
             onPlayerRanking();
+        else if (GamePanel.MENU_MUTE_SOUND.equals(menuCmd))
+        {
+            boolean muteSound = (Boolean)selectedObject;
+            
+            gameUser.setMuteSound(muteSound);
+            GameSoundManager.setMute(muteSound);
+        }
     }
     
     public void onChildDlgDisposed(Component child, Object... params)

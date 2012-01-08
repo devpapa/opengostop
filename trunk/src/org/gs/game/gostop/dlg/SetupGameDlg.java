@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import org.gs.game.gostop.Main;
+import org.gs.game.gostop.MainFrame;
 import org.gs.game.gostop.Resource;
 import org.gs.game.gostop.config.BonusCards;
 import org.gs.game.gostop.config.GameType;
@@ -185,6 +186,18 @@ public class SetupGameDlg extends JDialog implements ActionListener
             
             return formatted;
         }
+        
+        public boolean equals(Object obj)
+        {
+            boolean result;
+            
+            if (obj instanceof BonusCardsEntry)
+                result = ((BonusCardsEntry)obj).bcs.equals(bcs);
+            else
+                result = super.equals(obj);
+            
+            return result;
+        }
     }
     
     public SetupGameDlg(Frame parent)
@@ -206,6 +219,7 @@ public class SetupGameDlg extends JDialog implements ActionListener
     {
         Container contentPane = getContentPane();
         JPanel mainPanel;
+        GameUser gameUser = MainFrame.getGameUser();
 
         if (contentPane instanceof JPanel)
             mainPanel = (JPanel)contentPane;
@@ -252,6 +266,9 @@ public class SetupGameDlg extends JDialog implements ActionListener
         gbl.setConstraints(gameMoneyLabel, gbc);
         boxOuter.add(gameMoneyLabel);
         moneyCombo = new JComboBox(GameType.getGameMoneyTypes());
+        int moneyType = gameUser.getGameMoneyType();
+        if (moneyType > 0)
+            moneyCombo.setSelectedItem(moneyType);
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbl.setConstraints(moneyCombo, gbc);
         boxOuter.add(moneyCombo);
@@ -262,6 +279,8 @@ public class SetupGameDlg extends JDialog implements ActionListener
         gbl.setConstraints(bonusCardsLabel, gbc);
         boxOuter.add(bonusCardsLabel);
         bonusCombo = new JComboBox(getBonusCardsEntries());
+        if (gameUser.getGameBonusCards() != null)
+            bonusCombo.setSelectedItem(new BonusCardsEntry(gameUser.getGameBonusCards()));
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbl.setConstraints(bonusCombo, gbc);
         boxOuter.add(bonusCombo);
@@ -302,8 +321,12 @@ public class SetupGameDlg extends JDialog implements ActionListener
             dispose();
         else if (e.getSource() == okButton)
         {
+            GameUser gameUser = MainFrame.getGameUser();
+            
             selectedGame = getGameType();
-            selectedGame.setGameMoney((Integer)moneyCombo.getSelectedItem());
+            Integer gameMoney = (Integer)moneyCombo.getSelectedItem();
+            selectedGame.setGameMoney(gameMoney);
+            gameUser.setGameMoneyType(gameMoney);
             
             gamePlayers = new ArrayList<GameUser>();
             for (Component c: players.getComponents())
@@ -313,6 +336,7 @@ public class SetupGameDlg extends JDialog implements ActionListener
             }
             
             bonusCards = ((BonusCardsEntry)bonusCombo.getSelectedItem()).bcs;
+            gameUser.setGameBonusCards(bonusCards);
             
             dispose();
         }
