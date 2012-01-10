@@ -324,11 +324,8 @@ public class AutoPlayHandler implements IPlayHandler
                     takenHalf ? 300 : 500;
             }
             else if (tcp != null && tcp.getCardCount(true) > 2)
-                goPriority = 600;
+                goPriority = goStatus.getCardPoints(CardClass.LEAF) > 0 ? -2300 : -2150;
         }
-        
-        if (tcp != null && tcp.getCardCount(true) >= 3)
-            goPriority = goStatus.getCardPoints(CardClass.LEAF) > 0 ? 2300 : 2150;
         
         if (goPriority == 0 && tcp == null
             && otherStatus.getCardPoints(CardClass.LEAF) >= 8
@@ -336,7 +333,8 @@ public class AutoPlayHandler implements IPlayHandler
             && gameTable.isDoubleLeafAvailable(cardItem.getMajorCode()))
             goPriority = 2100;
         
-        if (checkTable && cardStatus == 0 && goPriority > 0)
+        if (checkTable && cardStatus == 0 && goPriority > 0
+            && (tcp == null || tcp.getCardCount(true) < 3))
             goPriority = -goPriority;
         
         return goPriority;
