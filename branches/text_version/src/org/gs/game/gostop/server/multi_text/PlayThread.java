@@ -7,6 +7,8 @@ package org.gs.game.gostop.server.multi_text;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+
+//import org.gs.game.gostop.server.multi_text.Client;
 /*
 import java.awt.*;
 import java.awt.event.*;
