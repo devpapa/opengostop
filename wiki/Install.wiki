@@ -1,7 +1,7 @@
 #summary How to install source code
 
 = Requirements =
-  * PC for compile and run
+  * PC to compile source codes and run binarys
   * Java compiler (recommandation : 1.6 +)
   * ant 
 
